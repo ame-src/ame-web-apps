@@ -1,0 +1,119 @@
+﻿@model AmeWebApps.Models.AME_RETURNED_RECEIVERS
+
+@{
+    ViewBag.Title = "Input Return";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+<div style="position:relative;">
+<div>
+@using (Html.BeginForm("InputReturn3", "ReturnedReceivers")) {
+    <fieldset>
+        <legend>AME_RETURNED_RECEIVERS</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RETURN_DATE)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.RETURN_DATE, new { @Value = DateTime.Now.ToString() })
+            @Html.ValidationMessageFor(model => model.RETURN_DATE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CLIENT_ID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CLIENT_ID, new { @Value = ViewData["CLIENT_ID"] })
+            @Html.ValidationMessageFor(model => model.CLIENT_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CLIENT_NAME)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CLIENT_NAME, new { @Value = ViewData["COMPANY_NAME"] })
+            @Html.ValidationMessageFor(model => model.CLIENT_NAME)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BRANCH)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BRANCH, new { @Value = ViewData["BRANCH"] })
+            @Html.ValidationMessageFor(model => model.BRANCH)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COMPUTER_NAME)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.COMPUTER_NAME, new { @Value = ViewData["COMPUTER_NAME"] })
+            @Html.ValidationMessageFor(model => model.COMPUTER_NAME)
+        </div>
+
+        <div class="editor-label">
+            <label for="RETURN_REASON">Return Reason</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RETURN_REASON)
+            @Html.ValidationMessageFor(model => model.RETURN_REASON)
+        </div>
+
+        <div class="editor-label">
+            <label for="RETURNED_BY">Replaced By</label>
+        </div>
+        <div class="editor-field">
+            <select id="REPLACED_BY" name="REPLACED_BY">
+                <option value="PKrikorian">PKrikorian</option>
+                <option value="SConnolly">SConnolly</option>
+                <option value="JRogers">JRogers</option>
+                <option value="MMakhool">MMakhool</option>
+                <option value="JSmith">JSmith</option>
+                <option value="KMiller">KMiller</option>
+                <option value="AAvedissian">AAvedissian</option>
+            </select>
+        </div>
+        <p>
+            <input type="submit" value="Input" />
+        </p>
+    </fieldset>
+}
+</div>
+<div style="width:400px; top:0px;left:440px;position:absolute;">
+    <table style="font:10px arial;">
+        <tr>
+            <td>@ViewData["CLIENT_ID"]</td>
+            <td>@ViewData["COMPANY_NAME"]</td>
+            <td>@ViewData["BRANCH"]</td>
+        </tr>
+    </table>
+    <br />
+    <br />
+        @{if (ViewData["NOTES"] == null)
+          {
+          <p>"No return notes"</p>
+          }
+          else
+          { 
+            <p>@Html.Raw(ViewData["NOTES"])</p>
+          }
+          }
+</div>
+</div>
+<div>
+    @Html.ActionLink("Back to Search", "InputReturn")
+    <br />
+    @Html.ActionLink("Back to List", "ViewReturns")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

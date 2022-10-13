@@ -1,0 +1,17 @@
+﻿@model AmeWebApps.Models.AME_CATEGORY_TREE
+
+@foreach (var item in Model.Children)
+{
+    <ul>
+        @if (item != null)
+        {
+            <li id="@item.CATEGORY_ID">
+                <a href="#" class="cat">@item.DESCRIPTION</a>
+                @if (item.Children.Count > 0)
+                {
+                    @Html.Partial("Children", item)
+                }
+            </li>
+        }
+    </ul>
+}

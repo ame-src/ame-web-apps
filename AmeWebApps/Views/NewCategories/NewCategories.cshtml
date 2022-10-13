@@ -1,0 +1,61 @@
+﻿@model AmeWebApps.Models.AME_CATEGORY_TREE
+
+@{
+    ViewBag.Title = "New Categories";
+}
+
+@section scripts {
+<script src="~/Scripts/jquery.jstree.js" type="text/javascript"></script>
+<script src="~/Scripts/_lib/jquery.cookie.js" type="text/javascript"></script>
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                A treeview of the newly added categories and songs added to each. <br /> 
+                @ViewData["totalNew"] tracks have been updated in this category.
+            </p>
+        </div>
+    </section>
+}
+
+<h3>Current Category Tree</h3>
+
+<div class="content-wrapper" style="width:1300px; height: 610px;">
+    <div id="divtree" style="width: 350px; height: 600px; overflow-y:auto; float:left; background: #fff;">
+        <ul id="tree">
+            <li id="@Model.CATEGORY_ID">
+                <a href="?selcat=@Model.CATEGORY_ID" class="cat">@Model.DESCRIPTION</a>
+                @Html.Partial("Children",Model)
+            </li>
+        </ul>
+    </div>
+
+    <div style="background: #fff; height: 600px; overflow-y:auto; padding-right: 15px;">
+        @Html.Partial("CategoryContains", ViewData["catCont"])
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $("#divtree").jstree({
+        "ui": {
+            "initially_select": "@ViewData["selcat"]"
+        },
+        "core": {
+            "animation": 150
+        }
+    });
+
+
+    $("#divtree").bind("select_node.jstree", function (evt, data) {
+        if (data.inst.get_selected().attr("ID") != "@ViewData["selcat"]") {
+            window.location = "./NewCategories?selcat=" + data.inst.get_selected().attr("ID")
+        }
+    });
+</script>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AmeReturnModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="AmeReturnModelStoreContainer">
+          <EntitySet Name="AME_RETURNED_RECEIVERS" EntityType="AmeReturnModel.Store.AME_RETURNED_RECEIVERS" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AME_RETURNED_RECEIVERS">
+          <Key>
+            <PropertyRef Name="RETURN_ID" />
+          </Key>
+          <Property Name="RETURN_ID" Type="int" Nullable="false" />
+          <Property Name="RETURN_DATE" Type="datetime" />
+          <Property Name="CLIENT_ID" Type="int" />
+          <Property Name="CLIENT_NAME" Type="varchar" MaxLength="75" />
+          <Property Name="BRANCH" Type="varchar" MaxLength="50" />
+          <Property Name="COMPUTER_NAME" Type="varchar" MaxLength="15" />
+          <Property Name="RETURN_REASON" Type="varchar(max)" />
+          <Property Name="RETURNED_BY" Type="varchar" MaxLength="50" />
+          <Property Name="IS_LOST" Type="varchar" MaxLength="1" />
+          <Property Name="REASON_LOST" Type="varchar(max)" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AmeReturnModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AmeReturnrEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AME_RETURNED_RECEIVERS" EntityType="AmeReturnModel.AME_RETURNED_RECEIVERS" />
+        </EntityContainer>
+        <EntityType Name="AME_RETURNED_RECEIVERS">
+          <Key>
+            <PropertyRef Name="RETURN_ID" />
+          </Key>
+          <Property Name="RETURN_ID" Type="Int32" Nullable="false" />
+          <Property Name="RETURN_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CLIENT_ID" Type="Int32" />
+          <Property Name="CLIENT_NAME" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
+          <Property Name="BRANCH" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="COMPUTER_NAME" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RETURN_REASON" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="RETURNED_BY" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IS_LOST" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="REASON_LOST" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AmeReturnModelStoreContainer" CdmEntityContainer="AmeReturnrEntities">
+          <EntitySetMapping Name="AME_RETURNED_RECEIVERS">
+            <EntityTypeMapping TypeName="AmeReturnModel.AME_RETURNED_RECEIVERS">
+              <MappingFragment StoreEntitySet="AME_RETURNED_RECEIVERS">
+                <ScalarProperty Name="RETURN_ID" ColumnName="RETURN_ID" />
+                <ScalarProperty Name="RETURN_DATE" ColumnName="RETURN_DATE" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
+                <ScalarProperty Name="BRANCH" ColumnName="BRANCH" />
+                <ScalarProperty Name="COMPUTER_NAME" ColumnName="COMPUTER_NAME" />
+                <ScalarProperty Name="RETURN_REASON" ColumnName="RETURN_REASON" />
+                <ScalarProperty Name="RETURNED_BY" ColumnName="RETURNED_BY" />
+                <ScalarProperty Name="IS_LOST" ColumnName="IS_LOST" />
+                <ScalarProperty Name="REASON_LOST" ColumnName="REASON_LOST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,25 @@
+﻿@model AmeWebApps.Models.AME_SYSTEM_RETURNS
+
+@{
+    ViewBag.Title = "Search TAG Number";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@using (Html.BeginForm("Create","Tickets",FormMethod.Get)) {
+    <label for="COMPUTER_NAME">TAG #:</label>
+    <input type="text" id="COMPUTER_NAME" name="COMPUTER_NAME" />
+    <input type="submit" value="Look Up" />
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

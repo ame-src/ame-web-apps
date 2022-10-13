@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "New Categories Index";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<ul>
+    <li>@Html.ActionLink("Category Tree View", "NewCategories", "NewCategories")</li>
+    <li>@Html.ActionLink("Categories by Song", "NewCategoriesPerSong", "NewCategories")</li>
+</ul>

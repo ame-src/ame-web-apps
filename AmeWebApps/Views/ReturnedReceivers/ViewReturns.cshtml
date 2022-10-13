@@ -1,0 +1,34 @@
+﻿@model List<AmeWebApps.Models.AME_SYSTEM_RETURNS>
+
+@{
+    ViewBag.Title = "View Returned Recievers";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 50);
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@grid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid.Columns(
+grid.Column(columnName: "RETURN_DATE", header:"Return Date"),
+    grid.Column(columnName: "CLIENT_ID", header: "Client ID"),
+    grid.Column(columnName:"BRANCH", header: "Branch"),
+    grid.Column(columnName:"COMPUTER_NAME", header: "Tag Number"),
+    grid.Column(columnName:"RETURN_REASON", header: "Reason for Return", format: item => String.IsNullOrEmpty(item.RETURN_REASON) ? "None" : item.RETURN_REASON),
+    grid.Column(columnName:"REPLACED_BY", header: "Replaced By"),
+    grid.Column(columnName:"ISSUES", header: "Receiver Issues", format: item => String.IsNullOrEmpty(item.ISSUES) ? Html.ActionLink((string)"Add Issue", (string)"AddReturnIssue", new { returnID = (int)item.RETURN_ID}) : item.ISSUES)
+    ))
+
+<br />
+<div>
+    @Html.ActionLink("Back to Search", "InputReturn")
+</div>

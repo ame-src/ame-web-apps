@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Is It Downloading?!";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@{
+    using (Html.BeginForm("Index","Comm",FormMethod.Get)) {
+        <label for="ds">Update Serial Number (i.e SC42069):</label>
+        <input type="text" id="ds" name="ds" value="@ViewBag.ds"/>
+        <input type="submit" value="Check Status" />
+    } 
+}
+
+@{
+    if(String.IsNullOrEmpty(ViewBag.ds)){
+     <p>Please select update to search i.e. SC24953</p>   
+    }
+    if(!String.IsNullOrEmpty(ViewBag.ds) && ViewBag.hasntStarted == true && ViewBag.ds != "N/A"){
+     <p><b>The update does not appear to have been copied to the comm server to begin downloading or no files have been downloaded.</b></p>   
+    }
+    if (!String.IsNullOrEmpty(ViewBag.ds) && ViewBag.ds != "N/A")
+    {
+    <p>
+        @if (ViewBag.fileCount == ViewBag.hashCount)
+        {
+            <span><b>The download appears to be complete!</b></span>
+        }
+        else if (DateTime.Now.AddHours(-2.5) < ViewBag.lastActivity)
+        {
+            <span><b>Yes it is downloading!</b></span>
+        }
+        else
+        {
+            <span><b>No! It does not appear to be downloading.</b></span>   
+        }
+    </p>
+    <p>Update Path: @ViewBag.folderPath</p>
+    <p>Total FileCount: @ViewBag.fileCount</p>
+    <p>Files Downloaded: @ViewBag.hashCount / @ViewBag.fileCount</p>
+    <p>Last Activity: @ViewBag.lastActivity.ToString()</p>
+        if (ViewBag.lastHashFile != null)
+        {
+            <p>File: @ViewBag.lastHashFile.FullName</p>
+        }
+    } else {
+        <p><b>The update does not appear to have been copied to the comm server to begin downloading or no files have been downloaded.</b></p>   
+    }
+    
+}

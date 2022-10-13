@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Returned Receiver Index";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<ul>
+    <li>@Html.ActionLink("Input Returned Receiver", "InputReturn", "ReturnedReceivers")</li>
+    <li>@Html.ActionLink("View Returned Receivers", "ViewReturns", "ReturnedReceivers")</li>
+</ul>

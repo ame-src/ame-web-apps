@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Main Index";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<ul>
+    <li>@Html.ActionLink("Build Sheets", "Index", "BuildSheets")</li>
+    <li>@Html.ActionLink("New Categories", "Index", "NewCategories")</li>
+    <li>@Html.ActionLink("Returned Receivers", "Index", "ReturnedReceivers")</li>
+    <li>@Html.ActionLink("BPM Calculator", "Index", "BPM")</li>
+    <li>@Html.ActionLink("Chart", "UpdatedCharts", "Home")</li>
+</ul>

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Auto Diagnose Test";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+<h2>Computer</h2>
+<p>
+    Tag: @ViewBag.tagNum
+</p>
+
+<h1>Issues</h1>
+<p>
+    Faults: @{foreach (var fault in ViewBag.faultList)
+              {
+                  <br />@fault
+              }}
+</p>
+<p>
+    Last Communication: <br /> @ViewData["DATE_LAST_COMM"]
+</p>
+<p>
+    System Expires: <br /> @ViewData["SYSTEM_EXPIRES"]
+</p>

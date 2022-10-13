@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Build Sheets Index";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<ul style="list-style:none;">
+    <li>@Html.ActionLink("Print Build Sheet", "PrintList")</li>
+    <li>@Html.ActionLink("Edit and Reprint Build Sheet", "EditList")</li>
+    <li>@Html.ActionLink("Add Shipping Information", "AddShippingInfoList")</li>
+    <li>@Html.ActionLink("View Shipped Receivers", "ViewShipped")</li>
+</ul>

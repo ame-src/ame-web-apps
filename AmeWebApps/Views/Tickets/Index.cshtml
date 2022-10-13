@@ -1,0 +1,100 @@
+﻿@model IEnumerable<AmeWebApps.Models.AME_TICKET>
+
+@{
+    ViewBag.Title = "AME Tickets";
+    var OpenTickets = Model.Where(m => m.STATUS == "OPEN");
+    var ClosedTickets = Model.Where(m => m.STATUS == "CLOSED").Where(x=>x.LAST_UPDATE > DateTime.Now.AddDays(-14)).OrderByDescending(x => x.LAST_UPDATE);
+    var PendingTickets = Model.Where(m => m.STATUS == "PENDING").OrderBy(x => x.LAST_UPDATE);
+    WebGrid grid = new WebGrid(OpenTickets, rowsPerPage: 10);
+    WebGrid grid2 = new WebGrid(ClosedTickets, rowsPerPage: 10);
+    WebGrid grid3 = new WebGrid(PendingTickets, rowsPerPage: 10);
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<p>
+    @Html.ActionLink("New Ticket", "FindReceiver")
+</p>
+
+<h2>Open Tickets</h2>
+
+@grid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid.Columns(
+grid.Column(columnName: "DATE_OPENED", header:"Opened"),
+grid.Column(columnName: "LAST_UPDATE", header:"Updated"),
+grid.Column(columnName: "CLIENT_ID", header: "Client ID"),
+grid.Column(columnName:"BRANCH", header: "Branch"),
+grid.Column(columnName:"RECIEVER_TAG", header: "Tag Number"),
+grid.Column(columnName:"REASON_FOR_CALL", header: "Reason for Call"),
+grid.Column(columnName:"ASIGNEE", header: "Asignee"),
+grid.Column(columnName:"ESCALATED_TO", header: "Escalated To"),
+grid.Column(columnName:"STATUS", header: "Status"),
+grid.Column(columnName:"SENDMAIL", header: "Send Email", format: item => DateTime.Compare((DateTime)item.LAST_UPDATE.AddHours(1), DateTime.Now) == -1 ? "Yes" : "No"),
+grid.Column(columnName:"", header:"", format: item => Html.ActionLink((string)"Update", (string)"Edit", new { id = (int)item.TICKET_ID}))
+))
+
+<br />
+
+<h2>Pending Tickets</h2>
+
+@grid3.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid3.Columns(
+grid3.Column(columnName: "DATE_OPENED", header:"Opened"),
+grid3.Column(columnName: "LAST_UPDATE", header:"Updated"),
+grid3.Column(columnName: "CLIENT_ID", header: "Client ID"),
+grid3.Column(columnName:"BRANCH", header: "Branch"),
+grid3.Column(columnName:"RECIEVER_TAG", header: "Tag Number"),
+grid3.Column(columnName:"REASON_FOR_CALL", header: "Reason for Call"),
+grid3.Column(columnName:"ASIGNEE", header: "Asignee"),
+grid3.Column(columnName:"ESCALATED_TO", header: "Escalated To"),
+grid3.Column(columnName:"STATUS", header: "Status"),
+grid3.Column(columnName:"SENDMAIL", header: "Send Email", format: item => DateTime.Compare((DateTime)item.LAST_UPDATE.AddHours(1), DateTime.Now) == -1 ? "Yes": "No"),
+grid3.Column(columnName:"", header:"", format: item => Html.ActionLink((string)"Update", (string)"Edit", new { id = (int)item.TICKET_ID}))
+))
+
+<h2>Closed Tickets</h2>
+
+@grid2.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid2.Columns(
+grid2.Column(columnName: "DATE_OPENED", header:"Opened"),
+grid2.Column(columnName: "LAST_UPDATE", header:"Updated"),
+grid2.Column(columnName: "CLIENT_ID", header: "Client ID"),
+grid2.Column(columnName:"BRANCH", header: "Branch"),
+grid2.Column(columnName:"RECIEVER_TAG", header: "Tag Number"),
+grid2.Column(columnName:"REASON_FOR_CALL", header: "Reason for Call"),
+grid2.Column(columnName:"ASIGNEE", header: "Asignee"),
+grid2.Column(columnName:"ESCALATED_TO", header: "Escalated To"),
+grid2.Column(columnName:"STATUS", header: "Status"),
+grid2.Column(columnName:"", header:"", format: item => Html.ActionLink((string)"Update", (string)"Edit", new { id = (int)item.TICKET_ID}))
+))
+
+<script>
+    function refreshPage() {
+        var page_y = document.getElementsByTagName("html")[0].scrollTop;
+        window.location.href = window.location.href.split('?')[0] + '?y=' + page_y;
+    }
+    window.onload = function () {
+        setTimeout(refreshPage, 60000);
+        if (window.location.href.indexOf('y') != -1) {
+            var match = window.location.href.split('?')[1].split("&")[0].split("=");
+            document.getElementsByTagName("html")[0].scrollTop = match[1];
+        }
+    }
+</script>

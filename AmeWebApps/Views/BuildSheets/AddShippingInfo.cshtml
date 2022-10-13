@@ -1,0 +1,139 @@
+﻿@model List<AmeWebApps.Models.RPM_CLIENT_ADDRESS>
+
+@{
+    ViewBag.Title = "Complete Build Sheet";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@if (Model != null){
+
+using (Html.BeginForm("PrintFinalBuildSheet", "BuildSheets")){
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+<fieldset>
+    <legend>Shipping Information</legend>
+    <input type="hidden" id="SYSTEM_ID" name="systemID" value="@ViewBag.systemID" />
+    <table>
+        <tr>
+            <td>
+                Shipping Method
+            </td>
+            <td>
+                <select id="SHIP_MTHD" name="SHIP_MTHD">
+                    <option value="Ground">Ground</option>
+                    <option value="3 Day Select">3 Day Select</option>
+                    <option value="2nd Day Air">2nd Day Air</option>
+                    <option value="2nd Day Air AM">2nd Day Air AM</option>
+                    <option value="Next Day Air Saver">Next Day Air Saver</option>
+                    <option value="Next Day Air">Next Day Air</option>
+                    <option value="Next Day Air AM">Next Day Air Early AM</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tracking #
+            </td>
+            <td>
+                <input type="text" id="TRACKING_NUM" name="TRACKING_NUM" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Return Slip #
+            </td>
+            <td>
+                <input type="text" id="RETURN_NUM" name="RETURN_NUM" />
+            </td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" value="Finish Buildsheet" />
+    </p>
+</fieldset>
+}
+    foreach (var Address in Model){
+        <table style="margin-left:15px; float:left;">
+        <tr>
+            <td colspan="2">
+                <h2 style="margin-top:0px;">@Address.COMPANY_TYPE Information</h2>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Company Name
+            </th>
+            <td>
+                @Address.COMPANY_NAME @Address.BRANCH
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Attention
+            </th>
+            <td>
+                @Address.ATTENTION
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Address 1
+            </th>
+            <td>
+                @Address.ADDRESS_1
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Address 2
+            </th>
+            <td>
+                @Address.ADDRESS_2
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Country
+            </th>
+            <td>
+                @Address.COUNTRY
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Zip
+            </th>
+            <td>
+                @Address.ZIP
+            </td>
+        </tr>
+        <tr>
+            <th>
+                City
+            </th>
+            <td>
+                @Address.CITY
+            </td>
+        </tr>
+        <tr>
+            <th>
+                State
+            </th>
+            <td>
+                @Address.STATE
+            </td>
+        </tr>
+    </table>   
+        }
+    } else {
+    <p>BUILD SHEET NOT FOUND. Check client management to make sure it exists. Or click @Html.ActionLink("here", "DeleteEntry", new { systemID = (int)ViewBag.systemID}) to delete this entry.</p>   
+}

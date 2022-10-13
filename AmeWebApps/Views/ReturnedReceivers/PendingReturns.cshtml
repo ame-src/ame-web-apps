@@ -1,0 +1,38 @@
+﻿@model List<AmeWebApps.Models.PendingReturnModel>
+
+@{
+    ViewBag.Title = "Pending Returns";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 50);
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@section scripts{
+<script>
+    function getTracking(trackingNum) {
+        var url = "http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=" + trackingNum;
+        window.open(url);
+    }
+</script>
+
+}
+
+@grid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid.Columns(
+    grid.Column(columnName: "PRINT_DATE", header: "Date Replaced"),
+    grid.Column(columnName: "COMPANY_NAME", header: "Company"),
+    grid.Column(columnName: "BRANCH", header: "Branch"),
+    grid.Column(columnName: "REPLACING_NAME", header: "Returning"),
+    grid.Column(columnName: "RETURN_SLIP_TRACKING_NUM", header: "Return Slip", format: @<text>@if(item.RETURN_SLIP_TRACKING_NUM != ""){<button onclick="getTracking('@(item.RETURN_SLIP_TRACKING_NUM)')">@item.RETURN_SLIP_TRACKING_NUM</button>}</text>),
+    grid.Column(columnName: "PRINTED_BY", header: "Printed By")
+))

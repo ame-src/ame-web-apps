@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EditBuildSheetModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EditBuildSheetModelStoreContainer">
+          <EntitySet Name="AME_BUILD_SHEET" EntityType="EditBuildSheetModel.Store.AME_BUILD_SHEET" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AME_BUILD_SHEET">
+          <Key>
+            <PropertyRef Name="BUILD_SHEET_ID" />
+            <PropertyRef Name="SYSTEM_ID" />
+          </Key>
+          <Property Name="BUILD_SHEET_ID" Type="int" Nullable="false" />
+          <Property Name="PRINT_DATE" Type="varchar" MaxLength="10" />
+          <Property Name="INSTALL_DATE" Type="varchar" MaxLength="10" />
+          <Property Name="SHIP_BY_DATE" Type="varchar" MaxLength="10" />
+          <Property Name="PROFILE_SIZE" Type="int" />
+          <Property Name="CLIENT_ID" Type="int" Nullable="false" />
+          <Property Name="NUM_ZONES" Type="int" />
+          <Property Name="COMPANY_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="SYSTEM_ID" Type="int" Nullable="false" />
+          <Property Name="BRANCH_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="USE_REFURB" Type="varchar" MaxLength="5" />
+          <Property Name="REPLACING_TYPE" Type="varchar" MaxLength="10" />
+          <Property Name="COMM_TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="ARRIVE_BY_DATE" Type="varchar" MaxLength="10" />
+          <Property Name="PACKAGING_TYPE" Type="varchar" MaxLength="15" />
+          <Property Name="RETURN_LABEL" Type="varchar" MaxLength="5" />
+          <Property Name="SHIP_TO_TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="CUSTOM_ADDR_ATTN" Type="varchar" MaxLength="25" />
+          <Property Name="CUSTOM_ADDR_1" Type="varchar" MaxLength="50" />
+          <Property Name="CUSTOM_ADDR_2" Type="varchar" MaxLength="50" />
+          <Property Name="CUSTOM_ADDR_CITY" Type="varchar" MaxLength="25" />
+          <Property Name="CUSTOM_ADDR_STATE" Type="varchar" MaxLength="20" />
+          <Property Name="CUSTOM_ADDR_ZIP" Type="varchar" MaxLength="10" />
+          <Property Name="ADDITIONAL_INSTRUCTIONS" Type="varchar(max)" />
+          <Property Name="DATE_BUILT" Type="varchar" MaxLength="25" />
+          <Property Name="NEW_OR_REFURB" Type="varchar" MaxLength="6" />
+          <Property Name="DATE_SHIPPED" Type="varchar" MaxLength="25" />
+          <Property Name="TAG_NUMBER" Type="varchar" MaxLength="50" />
+          <Property Name="TRACKING_NUM" Type="varchar" MaxLength="50" />
+          <Property Name="RETURN_SLIP_TRACKING_NUM" Type="varchar" MaxLength="50" />
+          <Property Name="SHIPPING_METHOD" Type="varchar" MaxLength="50" />
+          <Property Name="PRINTED_BY" Type="varchar" MaxLength="25" />
+          <Property Name="REPLACING_NAME" Type="varchar" MaxLength="15" />
+          <Property Name="REPLACING_SYSTEM_ID" Type="int" />
+          <Property Name="INSERT_DATE" Type="datetime" />
+          <Property Name="EDITED_DATE" Type="datetime" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EditBuildSheetModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AmeMasterEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AME_BUILD_SHEET" EntityType="EditBuildSheetModel.AME_BUILD_SHEET" />
+        </EntityContainer>
+        <EntityType Name="AME_BUILD_SHEET">
+          <Key>
+            <PropertyRef Name="BUILD_SHEET_ID" />
+            <PropertyRef Name="SYSTEM_ID" />
+          </Key>
+          <Property Name="BUILD_SHEET_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRINT_DATE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="INSTALL_DATE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="SHIP_BY_DATE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PROFILE_SIZE" Type="Int32" />
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="NUM_ZONES" Type="Int32" />
+          <Property Name="COMPANY_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SYSTEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="BRANCH_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="USE_REFURB" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="REPLACING_TYPE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="COMM_TYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ARRIVE_BY_DATE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PACKAGING_TYPE" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RETURN_LABEL" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="SHIP_TO_TYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CUSTOM_ADDR_ATTN" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="CUSTOM_ADDR_1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CUSTOM_ADDR_2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CUSTOM_ADDR_CITY" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="CUSTOM_ADDR_STATE" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CUSTOM_ADDR_ZIP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ADDITIONAL_INSTRUCTIONS" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DATE_BUILT" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="NEW_OR_REFURB" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="DATE_SHIPPED" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="TAG_NUMBER" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TRACKING_NUM" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RETURN_SLIP_TRACKING_NUM" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SHIPPING_METHOD" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PRINTED_BY" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="REPLACING_NAME" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="REPLACING_SYSTEM_ID" Type="Int32" />
+          <Property Name="INSERT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="EDITED_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EditBuildSheetModelStoreContainer" CdmEntityContainer="AmeMasterEntities">
+          <EntitySetMapping Name="AME_BUILD_SHEET">
+            <EntityTypeMapping TypeName="EditBuildSheetModel.AME_BUILD_SHEET">
+              <MappingFragment StoreEntitySet="AME_BUILD_SHEET">
+                <ScalarProperty Name="BUILD_SHEET_ID" ColumnName="BUILD_SHEET_ID" />
+                <ScalarProperty Name="PRINT_DATE" ColumnName="PRINT_DATE" />
+                <ScalarProperty Name="INSTALL_DATE" ColumnName="INSTALL_DATE" />
+                <ScalarProperty Name="SHIP_BY_DATE" ColumnName="SHIP_BY_DATE" />
+                <ScalarProperty Name="PROFILE_SIZE" ColumnName="PROFILE_SIZE" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="NUM_ZONES" ColumnName="NUM_ZONES" />
+                <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+                <ScalarProperty Name="SYSTEM_ID" ColumnName="SYSTEM_ID" />
+                <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
+                <ScalarProperty Name="USE_REFURB" ColumnName="USE_REFURB" />
+                <ScalarProperty Name="REPLACING_TYPE" ColumnName="REPLACING_TYPE" />
+                <ScalarProperty Name="COMM_TYPE" ColumnName="COMM_TYPE" />
+                <ScalarProperty Name="ARRIVE_BY_DATE" ColumnName="ARRIVE_BY_DATE" />
+                <ScalarProperty Name="PACKAGING_TYPE" ColumnName="PACKAGING_TYPE" />
+                <ScalarProperty Name="RETURN_LABEL" ColumnName="RETURN_LABEL" />
+                <ScalarProperty Name="SHIP_TO_TYPE" ColumnName="SHIP_TO_TYPE" />
+                <ScalarProperty Name="CUSTOM_ADDR_ATTN" ColumnName="CUSTOM_ADDR_ATTN" />
+                <ScalarProperty Name="CUSTOM_ADDR_1" ColumnName="CUSTOM_ADDR_1" />
+                <ScalarProperty Name="CUSTOM_ADDR_2" ColumnName="CUSTOM_ADDR_2" />
+                <ScalarProperty Name="CUSTOM_ADDR_CITY" ColumnName="CUSTOM_ADDR_CITY" />
+                <ScalarProperty Name="CUSTOM_ADDR_STATE" ColumnName="CUSTOM_ADDR_STATE" />
+                <ScalarProperty Name="CUSTOM_ADDR_ZIP" ColumnName="CUSTOM_ADDR_ZIP" />
+                <ScalarProperty Name="ADDITIONAL_INSTRUCTIONS" ColumnName="ADDITIONAL_INSTRUCTIONS" />
+                <ScalarProperty Name="DATE_BUILT" ColumnName="DATE_BUILT" />
+                <ScalarProperty Name="NEW_OR_REFURB" ColumnName="NEW_OR_REFURB" />
+                <ScalarProperty Name="DATE_SHIPPED" ColumnName="DATE_SHIPPED" />
+                <ScalarProperty Name="TAG_NUMBER" ColumnName="TAG_NUMBER" />
+                <ScalarProperty Name="TRACKING_NUM" ColumnName="TRACKING_NUM" />
+                <ScalarProperty Name="RETURN_SLIP_TRACKING_NUM" ColumnName="RETURN_SLIP_TRACKING_NUM" />
+                <ScalarProperty Name="SHIPPING_METHOD" ColumnName="SHIPPING_METHOD" />
+                <ScalarProperty Name="PRINTED_BY" ColumnName="PRINTED_BY" />
+                <ScalarProperty Name="REPLACING_NAME" ColumnName="REPLACING_NAME" />
+                <ScalarProperty Name="REPLACING_SYSTEM_ID" ColumnName="REPLACING_SYSTEM_ID" />
+                <ScalarProperty Name="INSERT_DATE" ColumnName="INSERT_DATE" />
+                <ScalarProperty Name="EDITED_DATE" ColumnName="EDITED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

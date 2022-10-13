@@ -1,0 +1,30 @@
+﻿@model List<AmeWebApps.Models.SongByCategoriesModel>
+
+@{
+    ViewBag.Title = "New Categories Per Song";
+    WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 50);
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@webGrid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: webGrid.Columns
+(
+    webGrid.Column(columnName: "MUSIC_ID", header: "Music ID"),
+    webGrid.Column(columnName: "Title"),
+    webGrid.Column(columnName: "Artist"),
+    webGrid.Column(columnName: "Categories", format: @<text>@foreach(var cat in item.CATEGORIES){@cat <br />}</text>),
+    webGrid.Column(columnName: "DATE_MODIFIED", header: "Date Modified", format: item => Convert.ToDateTime(item.DATE_MODIFIED).ToString("MM/dd/yyyy"))
+)
+)

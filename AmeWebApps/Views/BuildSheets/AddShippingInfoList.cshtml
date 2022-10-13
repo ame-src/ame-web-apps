@@ -1,0 +1,33 @@
+﻿@model List<AmeWebApps.Models.AME_BUILD_SHEET>
+
+@{
+    ViewBag.Title = "Add Shipping Information";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 50);
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+<p style="text-align: center;">
+    @Html.ActionLink("Show Hidden", "AddShippingInfoList", new { showHidden = 1 })
+    @Html.ActionLink("Unshow Hidden", "AddShippingInfoList")
+</p>
+
+@grid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid.Columns(
+grid.Column(columnName: "SHIP_BY_DATE", header: "Ship By", format: item => item.SHIP_BY_DATE == "0" ? "ASAP" : item.SHIP_BY_DATE),
+    grid.Column(columnName: "SYSTEM_ID", header: "System ID"),
+    grid.Column(columnName: "COMPANY_NAME", header: "Company"),
+    grid.Column(columnName: "BRANCH_NAME", header: "Branch"),
+    grid.Column(columnName: "PRINT", header: "Complete Buildsheet", format: item => Html.ActionLink((string)"Add Shipping Info", (string)"AddShippingInfo", new { systemID = (int)item.SYSTEM_ID })),
+    grid.Column(columnName: "Hide", header: "Hide", format: item => Html.ActionLink((string)"Hide", (string)"HideBuildsheet", new { systemID = (int)item.SYSTEM_ID }))
+))

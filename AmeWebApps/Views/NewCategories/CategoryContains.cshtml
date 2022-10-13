@@ -1,0 +1,20 @@
+﻿@model IEnumerable<AmeWebApps.Models.RPM_MUSIC>
+
+@{
+    var webGrid = new WebGrid(Model, rowsPerPage: 50);
+}
+
+@webGrid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: webGrid.Columns(
+    webGrid.Column(columnName:"", header:"Select", format: item => Html.CheckBox("MUSIC_ID")),
+    webGrid.Column(columnName:"MUSIC_ID", header: "Music ID"),
+    webGrid.Column(columnName:"TITLE", header: "Title"),
+    webGrid.Column(columnName:"DISPLAY_ARTIST", header: "Artist"),
+    webGrid.Column(columnName:"EDIT", header: "Edit"),
+    webGrid.Column(columnName:"YEAR_PUBLISHED", header: "Year Published"),
+    webGrid.Column(columnName:"BPM", header: "BPM")
+    )
+)

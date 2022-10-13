@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RPMCategoriesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RPMCategoriesModelStoreContainer">
+          <EntitySet Name="AME_CATEGORY_TREE" EntityType="RPMCategoriesModel.Store.AME_CATEGORY_TREE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RPM_CATEGORY" EntityType="RPMCategoriesModel.Store.RPM_CATEGORY" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RPM_MUSIC" EntityType="RPMCategoriesModel.Store.RPM_MUSIC" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RPM_MUSIC_CATEGORY" EntityType="RPMCategoriesModel.Store.RPM_MUSIC_CATEGORY" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AME_CATEGORY_TREE">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PARENT_CATEGORY_ID" Type="varchar" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="50" />
+          <Property Name="DATE_MODIFIED" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RPM_CATEGORY">
+          <Key>
+            <PropertyRef Name="SERVICE_TYPE" />
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="SERVICE_TYPE" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CATEGORY_ID" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IS_CLIENT" Type="char" MaxLength="1" />
+          <Property Name="IS_MUSIC" Type="char" MaxLength="1" />
+          <Property Name="DATE_MODIFIED" Type="datetime" />
+          <Property Name="IS_LIBRARY" Type="char" MaxLength="1" />
+          <Property Name="IS_RESOURCE_ONLY" Type="char" MaxLength="1" />
+          <Property Name="IS_SEASONAL" Type="char" MaxLength="1" />
+          <Property Name="COMMENTS" Type="text" />
+          <Property Name="DEPLOY_REPROCESSED" Type="char" MaxLength="1" />
+          <Property Name="IS_NEW_MODEL" Type="char" MaxLength="1" />
+          <Property Name="IS_RESTRICTED_TO_AME" Type="char" MaxLength="1" />
+          <Property Name="CATEGORY_TYPE" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="RPM_MUSIC">
+          <Key>
+            <PropertyRef Name="MUSIC_ID" />
+          </Key>
+          <Property Name="MUSIC_ID" Type="int" Nullable="false" />
+          <Property Name="TITLE" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="EDIT" Type="varchar" MaxLength="50" />
+          <Property Name="DISPLAY_ARTIST" Type="varchar" MaxLength="100" />
+          <Property Name="YEAR_PUBLISHED" Type="smallint" />
+          <Property Name="RPM_RATING" Type="smallint" />
+          <Property Name="INTRO" Type="smallint" />
+          <Property Name="RUN" Type="smallint" />
+          <Property Name="EOM_TIME" Type="smallint" />
+          <Property Name="END_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="FADE" Type="smallint" />
+          <Property Name="BPM" Type="varchar" MaxLength="5" />
+          <Property Name="RPM_CATEGORY_ID" Type="varchar" MaxLength="2" />
+          <Property Name="IS_INTERNET_OK" Type="varchar" MaxLength="1" />
+          <Property Name="RE_DISTRIBUTE_TO_AME" Type="varchar" MaxLength="1" />
+          <Property Name="AME_DISTRIBUTION_STATE" Type="varchar" MaxLength="64" />
+          <Property Name="AME_DISTRIBUTION_COMMENTS" Type="varchar" MaxLength="255" />
+          <Property Name="VERIFICATION_STATE" Type="varchar" MaxLength="10" />
+          <Property Name="VERIFICATION_COMMENTS" Type="varchar" MaxLength="255" />
+          <Property Name="VERIFIED_BY" Type="varchar" MaxLength="50" />
+          <Property Name="DATE_ENTERED" Type="datetime" />
+          <Property Name="DATE_MODIFIED" Type="datetime" />
+          <Property Name="STREAMING_SAMPLE_FILE" Type="varchar" MaxLength="50" />
+          <Property Name="AUDIO_TYPE" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="RPM_MUSIC_CATEGORY">
+          <Key>
+            <PropertyRef Name="MUSIC_ID" />
+            <PropertyRef Name="CATEGORY_ID" />
+            <PropertyRef Name="SERVICE_TYPE" />
+          </Key>
+          <Property Name="MUSIC_ID" Type="int" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="SERVICE_TYPE" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="DATE_MODIFIED" Type="datetime" />
+          <Property Name="TEMPO" Type="int" />
+          <Property Name="INTENSITY" Type="int" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RPMCategoriesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NewCatModels" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AME_CATEGORY_TREE" EntityType="RPMCategoriesModel.AME_CATEGORY_TREE" />
+          <EntitySet Name="RPM_CATEGORY" EntityType="RPMCategoriesModel.RPM_CATEGORY" />
+          <EntitySet Name="RPM_MUSIC" EntityType="RPMCategoriesModel.RPM_MUSIC" />
+          <EntitySet Name="RPM_MUSIC_CATEGORY" EntityType="RPMCategoriesModel.RPM_MUSIC_CATEGORY" />
+        </EntityContainer>
+        <EntityType Name="AME_CATEGORY_TREE">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PARENT_CATEGORY_ID" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DATE_MODIFIED" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RPM_CATEGORY">
+          <Key>
+            <PropertyRef Name="SERVICE_TYPE" />
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="SERVICE_TYPE" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CATEGORY_ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IS_CLIENT" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IS_MUSIC" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="DATE_MODIFIED" Type="DateTime" Precision="3" />
+          <Property Name="IS_LIBRARY" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IS_RESOURCE_ONLY" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IS_SEASONAL" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="COMMENTS" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DEPLOY_REPROCESSED" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IS_NEW_MODEL" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IS_RESTRICTED_TO_AME" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="CATEGORY_TYPE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="RPM_MUSIC">
+          <Key>
+            <PropertyRef Name="MUSIC_ID" />
+          </Key>
+          <Property Name="MUSIC_ID" Type="Int32" Nullable="false" />
+          <Property Name="TITLE" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="EDIT" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DISPLAY_ARTIST" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="YEAR_PUBLISHED" Type="Int16" />
+          <Property Name="RPM_RATING" Type="Int16" />
+          <Property Name="INTRO" Type="Int16" />
+          <Property Name="RUN" Type="Int16" />
+          <Property Name="EOM_TIME" Type="Int16" />
+          <Property Name="END_TYPE" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="FADE" Type="Int16" />
+          <Property Name="BPM" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="RPM_CATEGORY_ID" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="IS_INTERNET_OK" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="RE_DISTRIBUTE_TO_AME" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="AME_DISTRIBUTION_STATE" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="AME_DISTRIBUTION_COMMENTS" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="VERIFICATION_STATE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="VERIFICATION_COMMENTS" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="VERIFIED_BY" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DATE_ENTERED" Type="DateTime" Precision="3" />
+          <Property Name="DATE_MODIFIED" Type="DateTime" Precision="3" />
+          <Property Name="STREAMING_SAMPLE_FILE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="AUDIO_TYPE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="RPM_MUSIC_CATEGORY">
+          <Key>
+            <PropertyRef Name="MUSIC_ID" />
+            <PropertyRef Name="CATEGORY_ID" />
+            <PropertyRef Name="SERVICE_TYPE" />
+          </Key>
+          <Property Name="MUSIC_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="SERVICE_TYPE" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="DATE_MODIFIED" Type="DateTime" Precision="3" />
+          <Property Name="TEMPO" Type="Int32" />
+          <Property Name="INTENSITY" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RPMCategoriesModelStoreContainer" CdmEntityContainer="NewCatModels">
+          <EntitySetMapping Name="AME_CATEGORY_TREE">
+            <EntityTypeMapping TypeName="RPMCategoriesModel.AME_CATEGORY_TREE">
+              <MappingFragment StoreEntitySet="AME_CATEGORY_TREE">
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="PARENT_CATEGORY_ID" ColumnName="PARENT_CATEGORY_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="DATE_MODIFIED" ColumnName="DATE_MODIFIED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RPM_CATEGORY">
+            <EntityTypeMapping TypeName="RPMCategoriesModel.RPM_CATEGORY">
+              <MappingFragment StoreEntitySet="RPM_CATEGORY">
+                <ScalarProperty Name="SERVICE_TYPE" ColumnName="SERVICE_TYPE" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="IS_CLIENT" ColumnName="IS_CLIENT" />
+                <ScalarProperty Name="IS_MUSIC" ColumnName="IS_MUSIC" />
+                <ScalarProperty Name="DATE_MODIFIED" ColumnName="DATE_MODIFIED" />
+                <ScalarProperty Name="IS_LIBRARY" ColumnName="IS_LIBRARY" />
+                <ScalarProperty Name="IS_RESOURCE_ONLY" ColumnName="IS_RESOURCE_ONLY" />
+                <ScalarProperty Name="IS_SEASONAL" ColumnName="IS_SEASONAL" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="DEPLOY_REPROCESSED" ColumnName="DEPLOY_REPROCESSED" />
+                <ScalarProperty Name="IS_NEW_MODEL" ColumnName="IS_NEW_MODEL" />
+                <ScalarProperty Name="IS_RESTRICTED_TO_AME" ColumnName="IS_RESTRICTED_TO_AME" />
+                <ScalarProperty Name="CATEGORY_TYPE" ColumnName="CATEGORY_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RPM_MUSIC">
+            <EntityTypeMapping TypeName="RPMCategoriesModel.RPM_MUSIC">
+              <MappingFragment StoreEntitySet="RPM_MUSIC">
+                <ScalarProperty Name="MUSIC_ID" ColumnName="MUSIC_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="EDIT" ColumnName="EDIT" />
+                <ScalarProperty Name="DISPLAY_ARTIST" ColumnName="DISPLAY_ARTIST" />
+                <ScalarProperty Name="YEAR_PUBLISHED" ColumnName="YEAR_PUBLISHED" />
+                <ScalarProperty Name="RPM_RATING" ColumnName="RPM_RATING" />
+                <ScalarProperty Name="INTRO" ColumnName="INTRO" />
+                <ScalarProperty Name="RUN" ColumnName="RUN" />
+                <ScalarProperty Name="EOM_TIME" ColumnName="EOM_TIME" />
+                <ScalarProperty Name="END_TYPE" ColumnName="END_TYPE" />
+                <ScalarProperty Name="FADE" ColumnName="FADE" />
+                <ScalarProperty Name="BPM" ColumnName="BPM" />
+                <ScalarProperty Name="RPM_CATEGORY_ID" ColumnName="RPM_CATEGORY_ID" />
+                <ScalarProperty Name="IS_INTERNET_OK" ColumnName="IS_INTERNET_OK" />
+                <ScalarProperty Name="RE_DISTRIBUTE_TO_AME" ColumnName="RE_DISTRIBUTE_TO_AME" />
+                <ScalarProperty Name="AME_DISTRIBUTION_STATE" ColumnName="AME_DISTRIBUTION_STATE" />
+                <ScalarProperty Name="AME_DISTRIBUTION_COMMENTS" ColumnName="AME_DISTRIBUTION_COMMENTS" />
+                <ScalarProperty Name="VERIFICATION_STATE" ColumnName="VERIFICATION_STATE" />
+                <ScalarProperty Name="VERIFICATION_COMMENTS" ColumnName="VERIFICATION_COMMENTS" />
+                <ScalarProperty Name="VERIFIED_BY" ColumnName="VERIFIED_BY" />
+                <ScalarProperty Name="DATE_ENTERED" ColumnName="DATE_ENTERED" />
+                <ScalarProperty Name="DATE_MODIFIED" ColumnName="DATE_MODIFIED" />
+                <ScalarProperty Name="STREAMING_SAMPLE_FILE" ColumnName="STREAMING_SAMPLE_FILE" />
+                <ScalarProperty Name="AUDIO_TYPE" ColumnName="AUDIO_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RPM_MUSIC_CATEGORY">
+            <EntityTypeMapping TypeName="RPMCategoriesModel.RPM_MUSIC_CATEGORY">
+              <MappingFragment StoreEntitySet="RPM_MUSIC_CATEGORY">
+                <ScalarProperty Name="MUSIC_ID" ColumnName="MUSIC_ID" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="SERVICE_TYPE" ColumnName="SERVICE_TYPE" />
+                <ScalarProperty Name="DATE_MODIFIED" ColumnName="DATE_MODIFIED" />
+                <ScalarProperty Name="TEMPO" ColumnName="TEMPO" />
+                <ScalarProperty Name="INTENSITY" ColumnName="INTENSITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

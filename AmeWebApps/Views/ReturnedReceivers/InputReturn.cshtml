@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Input Return";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@using (Html.BeginForm("InputReturn2","ReturnedReceivers",FormMethod.Get)) {
+    <label for="COMPUTER_NAME">TAG #:</label>
+    <input type="text" id="COMPUTER_NAME" name="COMPUTER_NAME" />
+    <input type="submit" value="Look Up" />
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ViewReturns")
+</div>

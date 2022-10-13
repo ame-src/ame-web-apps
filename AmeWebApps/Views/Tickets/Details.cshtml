@@ -1,0 +1,99 @@
+﻿@model AmeWebApps.Models.AME_TICKET
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>AME_TICKET</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TICKET_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TICKET_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.STATUS)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.STATUS)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CLIENT_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CLIENT_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BRANCH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BRANCH)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DATE_OPENED)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DATE_OPENED)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ASIGNEE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ASIGNEE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RECIEVER_TAG)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RECIEVER_TAG)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.REASON_FOR_CALL)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.REASON_FOR_CALL)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ESCALATED)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ESCALATED)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ESCALATED_TO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ESCALATED_TO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LAST_UPDATE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LAST_UPDATE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRIORITY)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRIORITY)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

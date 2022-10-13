@@ -1,0 +1,252 @@
+﻿@model AmeWebApps.Models.BuildSheetModel
+@{
+    ViewBag.Title = "Verify Build Sheet Info";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+<script type="text/javascript">
+    $(function () {
+        $("#custom-shipping").hide();
+        $("#INSTALL_DATE").val(new Date().toJSON().slice(0, 10));
+        $("#SHIP_BY_DATE").val(new Date().toJSON().slice(0, 10));
+        $("#ARRIVE_BY_DATE").val(new Date().toJSON().slice(0, 10));
+        $('select[name="REPLACING_TYPE"]').find('option[value="@Model.REPLACING_TYPE"]').attr("selected", true);
+        $("#COMM_@Model.COMM_TYPE").attr('checked', 'checked');
+        $("#PACK_@Model.PACK_TYPE").attr('checked', 'checked');
+        $("#SHIP_@Model.SHIP_TO").attr('checked', 'checked');
+    });
+    function shipto(addr) {
+        if (addr == "custom") {
+            $("#custom-shipping").show();
+        }
+        else {
+            $("#custom-shipping").hide();
+        }
+    };
+</script>
+<style>
+    input {
+        width: 225px;
+    }
+    th {
+        padding: 10px;
+    }
+    td {
+        padding-left: 15px;
+        padding-right: -15px;
+    }
+    table {
+        background-color: #FFFFFF;
+        box-shadow: 2px 2px 5px lightgrey;
+    }
+</style>
+
+<h2>Build Sheet</h2>
+
+@using (Html.BeginForm("PrintBuildSheet", "BuildSheets")) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BuildsheetModel</legend>
+        <input type="hidden" name="REPLACING_NAME" id="REPLACING_NAME" value="@Model.REPLACING_NAME"/>
+        <table style="width:850px;">
+            <tr>
+                <th colspan="4"><b><u>Request Information</u></b></th>
+            </tr>
+            <tr>
+                <td>Client ID</td>
+                <td>
+                    @Html.EditorFor(model => model.CLIENT_ID)
+                    @Html.ValidationMessageFor(model => model.CLIENT_ID)
+                </td>
+            </tr>
+            <tr>
+                <td>Install Date</td>
+                <td>
+                    <input type="date" id="INSTALL_DATE" name="INSTALL_DATE"/>
+                </td>
+                <td>Ship By</td>
+                <td>
+                    <input type="date" id="SHIP_BY_DATE" name="SHIP_BY_DATE"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Profile Name</td>
+                <td>
+                    @Html.EditorFor(model => model.PROFILE_NAME)
+                    @Html.ValidationMessageFor(model => model.PROFILE_NAME)
+                </td>
+                <td>Profile Size</td>
+                <td>
+                    @Html.EditorFor(model => model.PROFILE_SIZE)
+                    @Html.ValidationMessageFor(model => model.PROFILE_SIZE)
+                </td>
+            </tr>
+            
+            <tr>
+                <td># of Zones</td>
+                <td>
+                    @Html.EditorFor(model => model.NUM_ZONES)
+                    @Html.ValidationMessageFor(model => model.NUM_ZONES)
+                </td>
+                <td>Client Name</td>
+                <td>
+                    @Html.EditorFor(model => model.COMPANY_NAME)
+                    @Html.ValidationMessageFor(model => model.COMPANY_NAME)
+                </td>
+            </tr>
+            <tr>
+                <td>System ID</td>
+                <td>
+                    @Html.EditorFor(model => model.SYSTEM_ID)
+                    @Html.ValidationMessageFor(model => model.SYSTEM_ID)
+                </td>
+                <td>Branch</td>
+                <td>
+                    @Html.EditorFor(model => model.BRANCH_NAME)
+                    @Html.ValidationMessageFor(model => model.BRANCH_NAME)
+                </td>
+            </tr>
+            <tr style="height:48px;">
+                <td>Use Refurb?</td>
+                <td>
+                    @Html.EditorFor(model => model.USE_REFURB)
+                    @Html.ValidationMessageFor(model => model.USE_REFURB)
+                </td>
+                <td>Replacing Model</td>
+                <td>
+                    @Html.EditorFor(model => model.REPLACING_TYPE)
+                    <!--
+                    <select name="REPLACING_TYPE">
+                        <option value="" id="rptype_8">New Receiver</option>
+                        <option value="1" id="rptype_1">Model 1</option>
+                        <option value="2" id="rptype_2">Model 2</option>
+                        <option value="3" id="rptype_3">Model 3</option>
+                        <option value="4" id="rptype_4">Model 4</option>
+                        <option value="5" id="rptype_5">Model 5</option>
+                        <option value="7" id="rptype_6">Model 7</option>
+                        <option value="6" id="rptype_7">Video Receiver</option>
+                    </select>
+                    -->
+                </td>
+            </tr>
+            <tr style="height:48px;">
+                <td>Comm Type</td>
+                <td>
+                    <span style="padding-right:20px;">WAN <input type="radio" value="WAN" id="COMM_WAN" name="COMM_TYPE" style="padding-left: 5px; width: 20px;" /></span>
+                    <span style="padding-right:20px;">Dial-up <input type="radio" value="Dial-Up" id="COMM_DIALUP" name="COMM_TYPE" style="padding-left: 5px; width: 20px;" /></span>
+                </td>
+            </tr>
+            <tr><td></td></tr>
+        </table>            
+        <table style="width:850px;">
+            <tr>
+                <th><b><u>Shipping Information</u></b></th>
+            </tr>
+            <tr>
+                <td>Arrive By</td>
+                <td>
+                    <input type="date" name="ARRIVE_BY_DATE" id="ARRIVE_BY_DATE" />
+                    @Html.ValidationMessageFor(model => model.ARRIVE_BY_DATE)
+                </td>
+            </tr>
+            <tr style="height:48px;">
+                <td>Packaging</td>
+                <td>
+                    <span>New <input type="radio" name="PACK_TYPE" id="PACK_New" value="New" style="padding-left:5px; width:20px;" /></span>
+                    <span style="padding-left: 20px;">Replacement <input type="radio" name="PACK_TYPE" id="PACK_Replacement" value="Replacement" style="padding-left:5px; width:20px;" /></span>
+                </td>
+            </tr>
+            <tr style="height:48px;">
+                <td>Include Return Label</td>
+                <td>
+                    @Html.EditorFor(model => model.RETURN_LABEL)
+                    @Html.ValidationMessageFor(model => model.RETURN_LABEL)
+                </td>
+            </tr>
+            <tr style="height:48px;">
+                <td>Ship To</td>
+                <td>
+                    <span>Installed at Address <input type="radio" value="Installed at Address" id="SHIP_INSTALLED" name="SHIP_TO" style="padding-left:5px; width:20px;" onclick="shipto('installed')"/></span>
+                    <span style="padding-left:20px;">Shipping Address <input type="radio" value="Shipping Address" id="SHIP_SHIPPING" name="SHIP_TO" style="padding-left:5px; width:20px;" onclick="shipto('shipping')"/></span>
+                    <span style="padding-left:20px;">Custom Address <input type="radio" value="Custom Address" name="SHIP_TO" style="padding-left:5px; width:20px;" onclick="shipto('custom')"/></span>
+                </td>
+            </tr>
+        </table>
+
+        <div id="custom-shipping">
+            <table style="width:850px;">
+                <tr>
+                    <th colspan="6"><b><u>Custom Shipping Information</u></b></th>
+                </tr>
+                <tr>
+                    <td>Attention</td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.CUSTOM_ADDR_ATTN)
+                        @Html.ValidationMessageFor(model => model.CUSTOM_ADDR_ATTN)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Street</td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.CUSTOM_ADDR_1)
+                        @Html.ValidationMessageFor(model => model.CUSTOM_ADDR_1)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Apartment/Suite/Unit</td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.CUSTOM_ADDR_2)
+                        @Html.ValidationMessageFor(model => model.CUSTOM_ADDR_2)
+                    </td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td>
+                        <input type="text" id="CUSTOM_ADDR_CITY" name="CUSTOM_ADDR_CITY" style="width:100px;" />
+                        @Html.ValidationMessageFor(model => model.CUSTOM_ADDR_CITY)
+                    </td>
+                    <td>State</td>
+                    <td>
+                        <input type="text" id="CUSTOM_ADDR_STATE" name="CUSTOM_ADDR_STATE" style="width:100px;" />
+                        @Html.ValidationMessageFor(model => model.CUSTOM_ADDR_STATE)
+                    </td>
+                    <td>Zip Code</td>
+                    <td>
+                        <input type="text" id ="CUSTOM_ADDR_ZIP" name="CUSTOM_ADDR_ZIP" style="width:100px;"/>
+                        @Html.ValidationMessageFor(model => model.CUSTOM_ADDR_ZIP)
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <table style="width:850px;">
+            <tr>
+                <th><b><u>Additional Instructions</u></b></th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="ADDITIONAL_INSTRUCTIONS" id="ADDITIONAL_INSTRUCTIONS" style="width:600px;" />
+                    @Html.ValidationMessageFor(model => model.ADDITIONAL_INSTRUCTIONS)
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            <input type="submit" value="Print!" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to list", "PrintList", "BuildSheets")
+</div>

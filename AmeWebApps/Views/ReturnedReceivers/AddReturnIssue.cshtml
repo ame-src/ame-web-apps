@@ -1,0 +1,69 @@
+﻿@model AmeWebApps.Models.AME_SYSTEM_RETURNS
+
+@{
+    ViewBag.Title = "Add Return Issue";
+}
+
+<h2>AddReturnIssue</h2>
+
+@using (Html.BeginForm("UpdateReturnIssue", "ReturnedReceivers"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AME_SYSTEM_RETURNS</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RETURN_ID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RETURN_ID)
+            @Html.ValidationMessageFor(model => model.RETURN_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COMPUTER_NAME)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COMPUTER_NAME)
+            @Html.ValidationMessageFor(model => model.COMPUTER_NAME)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RETURN_REASON)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RETURN_REASON)
+            @Html.ValidationMessageFor(model => model.RETURN_REASON)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.REPLACED_BY)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.REPLACED_BY)
+            @Html.ValidationMessageFor(model => model.REPLACED_BY)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ISSUES)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ISSUES)
+            @Html.ValidationMessageFor(model => model.ISSUES)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

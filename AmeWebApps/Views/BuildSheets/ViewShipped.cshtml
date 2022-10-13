@@ -1,0 +1,42 @@
+﻿@model List<AmeWebApps.Models.AME_BUILD_SHEET>
+@{
+    ViewBag.Title = "View Shipped";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 50);
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@section scripts{
+<script>
+    function getTracking(trackingNum) {
+        if (trackingNum.substring(0, 2) == "1Z") {
+            var url = "http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=" + trackingNum;
+        } else {
+            var url = "https://www.fedex.com/apps/fedextrack/?tracknumbers=" + trackingNum;
+        }
+        window.open(url);
+    }
+</script>
+
+}
+
+@grid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid.Columns(
+grid.Column(columnName:"DATE_SHIPPED", header: "Date Shipped", format: @<text>@if(!String.IsNullOrEmpty(item.DATE_SHIPPED)){ <span>@Convert.ToDateTime(item.DATE_SHIPPED).ToShortDateString()</span>}</text>),
+    grid.Column(columnName:"COMPANY_NAME", header: "Company"),
+    grid.Column(columnName:"BRANCH_NAME", header: "Branch"),
+    grid.Column(columnName:"TAG_NUMBER", header: "Tag #"),
+    grid.Column(columnName:"TRACKING_NUM", header: "Tracking", format: @<text><button onclick="getTracking('@(item.TRACKING_NUM)')">@item.TRACKING_NUM</button></text>),
+    grid.Column(columnName: "REPLACING_NAME", header: "Returning"),
+    grid.Column(columnName:"RETURN_SLIP_TRACKING_NUM", header: "Return Slip", format: @<text>@if(item.RETURN_SLIP_TRACKING_NUM != ""){<button onclick="getTracking('@(item.RETURN_SLIP_TRACKING_NUM)')">@item.RETURN_SLIP_TRACKING_NUM</button>}</text>)
+))

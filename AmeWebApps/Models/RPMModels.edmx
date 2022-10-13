@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RPMLocSysAddrModels.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RPMLocSysAddrModelsStoreContainer">
+          <EntitySet Name="RPM_CLIENT_ADDRESS" EntityType="RPMLocSysAddrModels.Store.RPM_CLIENT_ADDRESS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RPM_CLIENT_LOCATION" EntityType="RPMLocSysAddrModels.Store.RPM_CLIENT_LOCATION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RPM_CLIENT_SYSTEM" EntityType="RPMLocSysAddrModels.Store.RPM_CLIENT_SYSTEM" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="RPM_CLIENT_ADDRESS">
+          <Key>
+            <PropertyRef Name="ADDRESS_ID" />
+          </Key>
+          <Property Name="ADDRESS_ID" Type="int" Nullable="false" />
+          <Property Name="COMPANY_NAME" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="BRANCH" Type="varchar" MaxLength="50" />
+          <Property Name="ATTENTION" Type="varchar" MaxLength="25" />
+          <Property Name="ADDRESS_1" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ADDRESS_2" Type="varchar" MaxLength="50" />
+          <Property Name="CITY" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="STATE" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="COUNTRY" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="ZIP" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="COMPANY_ID" Type="int" />
+          <Property Name="COMPANY_TYPE" Type="varchar" MaxLength="10" />
+          <Property Name="NOTES" Type="text" />
+          <Property Name="ORIG_ADDRESS_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="RPM_CLIENT_LOCATION">
+          <Key>
+            <PropertyRef Name="LOCATION_ID" />
+          </Key>
+          <Property Name="LOCATION_ID" Type="int" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="int" Nullable="false" />
+          <Property Name="ADDRESS_ID" Type="int" Nullable="false" />
+          <Property Name="BILL_TO_POLICY" Type="varchar" MaxLength="10" />
+          <Property Name="BILL_TO_ADDRESS_ID" Type="int" />
+          <Property Name="SHIP_TO_POLICY" Type="varchar" MaxLength="10" />
+          <Property Name="SHIP_TO_ADDRESS_ID" Type="int" />
+          <Property Name="MONTHLY_SERVICE_FEE" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="MONTHS_PER_BILL_PERIOD" Type="int" />
+          <Property Name="BILL_AHEAD_DAYS" Type="int" />
+          <Property Name="SERVICE_START_DATE" Type="datetime" />
+          <Property Name="SEASON_START" Type="varchar" MaxLength="5" />
+          <Property Name="SEASON_END" Type="varchar" MaxLength="5" />
+          <Property Name="SEASON_START_MMDD" Type="int" />
+          <Property Name="SEASON_END_MMDD" Type="int" />
+          <Property Name="SYSTEM_GRACE_PERIOD" Type="int" />
+          <Property Name="ZONE_ID" Type="int" />
+          <Property Name="PREV_BILL_THROUGH_DATE" Type="datetime" />
+          <Property Name="HAS_PHYSICAL_ACTIVITY" Type="char" MaxLength="1" />
+          <Property Name="RUNS_PAID_ADVERTISING" Type="char" MaxLength="1" />
+          <Property Name="PAYS_OWN_BMI" Type="char" MaxLength="1" />
+          <Property Name="PAYS_OWN_ASCAP" Type="char" MaxLength="1" />
+          <Property Name="PAYS_OWN_SESAC" Type="char" MaxLength="1" />
+          <Property Name="CHARGES_ADMISSION" Type="char" MaxLength="1" />
+          <Property Name="FLOOR_COUNT" Type="int" />
+          <Property Name="PAYS_OWN_AFM" Type="char" MaxLength="1" />
+          <Property Name="NOTES" Type="text" />
+          <Property Name="UPDATE_METHOD" Type="varchar" MaxLength="50" />
+          <Property Name="DISC_THRESHOLD" Type="int" />
+          <Property Name="UPDATE_METHOD_REASON" Type="varchar" MaxLength="80" />
+          <Property Name="LOCATION_TYPE" Type="varchar" MaxLength="20" />
+          <Property Name="QC_CALL_DATE" Type="datetime" />
+          <Property Name="LOCATION_STATUS" Type="varchar" MaxLength="20" />
+          <Property Name="ORIG_LOCATION_ID" Type="int" />
+          <Property Name="ASCAP_RATE_PLAN" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RPM_CLIENT_SYSTEM">
+          <Key>
+            <PropertyRef Name="SYSTEM_ID" />
+          </Key>
+          <Property Name="SYSTEM_ID" Type="int" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="int" Nullable="false" />
+          <Property Name="LOCATION_ID" Type="int" Nullable="false" />
+          <Property Name="PROFILE_ID" Type="int" Nullable="false" />
+          <Property Name="SYSTEM_STATUS" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="COMPUTER_NAME" Type="varchar" MaxLength="64" />
+          <Property Name="DATE_REQUIRED" Type="smalldatetime" />
+          <Property Name="DATE_PROMISED" Type="smalldatetime" />
+          <Property Name="DATE_BUILT" Type="smalldatetime" />
+          <Property Name="DATE_SHIPPED" Type="smalldatetime" />
+          <Property Name="SYSTEM_TYPE" Type="varchar" MaxLength="20" />
+          <Property Name="DATE_INSTALLED" Type="datetime" />
+          <Property Name="DATE_LAST_COMM" Type="datetime" />
+          <Property Name="DATE_NEXT_COMM" Type="datetime" />
+          <Property Name="DATE_ALERT_COMM" Type="datetime" />
+          <Property Name="COMM_METHOD" Type="varchar" MaxLength="20" />
+          <Property Name="DIAL_PREFIX" Type="varchar" MaxLength="10" />
+          <Property Name="USE_DHCP_FOR_IP" Type="varchar" MaxLength="1" />
+          <Property Name="IP_ADDRESS" Type="varchar" MaxLength="15" />
+          <Property Name="IP_SUBNET_MASK" Type="varchar" MaxLength="15" />
+          <Property Name="IP_GATEWAY" Type="varchar" MaxLength="15" />
+          <Property Name="USE_DHCP_FOR_DNS" Type="varchar" MaxLength="1" />
+          <Property Name="IP_DNS_SERVERS" Type="varchar" MaxLength="50" />
+          <Property Name="COMM_FREQ_VALUE" Type="int" />
+          <Property Name="COMM_FREQ_UNITS" Type="varchar" MaxLength="1" />
+          <Property Name="COMM_WINDOW_START" Type="int" />
+          <Property Name="COMM_WINDOW_STOP" Type="int" />
+          <Property Name="COMM_RETRY_LIMIT" Type="int" />
+          <Property Name="COMM_RETRY_VALUE" Type="int" />
+          <Property Name="COMM_RETRY_UNITS" Type="varchar" MaxLength="1" />
+          <Property Name="LAST_COMM_UPDATE" Type="varchar" MaxLength="20" />
+          <Property Name="COMM_UPDATE_CREATED" Type="datetime" />
+          <Property Name="COMM_DELIVERY_METHOD" Type="varchar" MaxLength="20" />
+          <Property Name="EXPIRATION_DATE" Type="datetime" />
+          <Property Name="FORCE_DEACTIVATION" Type="varchar" MaxLength="1" />
+          <Property Name="UPDATES_FEEDBACK_DATE" Type="datetime" />
+          <Property Name="PLAYED_FEEDBACK_DATE" Type="datetime" />
+          <Property Name="EVENTS_FEEDBACK_DATE" Type="datetime" />
+          <Property Name="LAST_DIAG_DATE" Type="datetime" />
+          <Property Name="SYSTEM_EXPIRES" Type="datetime" />
+          <Property Name="PROXY_SERVER" Type="varchar" MaxLength="100" />
+          <Property Name="PROXY_PORT" Type="int" />
+          <Property Name="PROXY_USER" Type="varchar" MaxLength="50" />
+          <Property Name="PROXY_PASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="NEW_WINDOW_START" Type="int" />
+          <Property Name="NEW_WINDOW_STOP" Type="int" />
+          <Property Name="ACTIVE_CATALOG_VER_NUM" Type="int" />
+          <Property Name="ACTIVE_PROFILE_VER_NUM" Type="int" />
+          <Property Name="ORIGINAL_PROFILE_ID" Type="int" />
+          <Property Name="PASSWORD" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ENABLED" Type="bit" Nullable="false" />
+          <Property Name="DATE_LAST_UPLOAD" Type="datetime" Nullable="false" />
+          <Property Name="IP_ADDRESS_SERVER" Type="varchar" MaxLength="1024" />
+          <Property Name="OBEY_COMM_WINDOW" Type="varchar" MaxLength="50" />
+          <Property Name="LAST_COMM_METHOD" Type="varchar" MaxLength="20" />
+          <Property Name="BPS" Type="int" />
+          <Property Name="AUDIO_CARD_TYPE" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="VIDEO_CAPS" Type="int" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RPMLocSysAddrModels" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RPMModels" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="RPM_CLIENT_ADDRESS" EntityType="RPMLocSysAddrModels.RPM_CLIENT_ADDRESS" />
+          <EntitySet Name="RPM_CLIENT_LOCATION" EntityType="RPMLocSysAddrModels.RPM_CLIENT_LOCATION" />
+          <EntitySet Name="RPM_CLIENT_SYSTEM" EntityType="RPMLocSysAddrModels.RPM_CLIENT_SYSTEM" />
+        </EntityContainer>
+        <EntityType Name="RPM_CLIENT_ADDRESS">
+          <Key>
+            <PropertyRef Name="ADDRESS_ID" />
+          </Key>
+          <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
+          <Property Name="COMPANY_NAME" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="BRANCH" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ATTENTION" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="ADDRESS_1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ADDRESS_2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CITY" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="STATE" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="COUNTRY" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="ZIP" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="COMPANY_ID" Type="Int32" />
+          <Property Name="COMPANY_TYPE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ORIG_ADDRESS_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RPM_CLIENT_LOCATION">
+          <Key>
+            <PropertyRef Name="LOCATION_ID" />
+          </Key>
+          <Property Name="LOCATION_ID" Type="Int32" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
+          <Property Name="BILL_TO_POLICY" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="BILL_TO_ADDRESS_ID" Type="Int32" />
+          <Property Name="SHIP_TO_POLICY" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="SHIP_TO_ADDRESS_ID" Type="Int32" />
+          <Property Name="MONTHLY_SERVICE_FEE" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="MONTHS_PER_BILL_PERIOD" Type="Int32" />
+          <Property Name="BILL_AHEAD_DAYS" Type="Int32" />
+          <Property Name="SERVICE_START_DATE" Type="DateTime" Precision="3" />
+          <Property Name="SEASON_START" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="SEASON_END" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="SEASON_START_MMDD" Type="Int32" />
+          <Property Name="SEASON_END_MMDD" Type="Int32" />
+          <Property Name="SYSTEM_GRACE_PERIOD" Type="Int32" />
+          <Property Name="ZONE_ID" Type="Int32" />
+          <Property Name="PREV_BILL_THROUGH_DATE" Type="DateTime" Precision="3" />
+          <Property Name="HAS_PHYSICAL_ACTIVITY" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="RUNS_PAID_ADVERTISING" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PAYS_OWN_BMI" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PAYS_OWN_ASCAP" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PAYS_OWN_SESAC" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="CHARGES_ADMISSION" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="FLOOR_COUNT" Type="Int32" />
+          <Property Name="PAYS_OWN_AFM" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UPDATE_METHOD" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DISC_THRESHOLD" Type="Int32" />
+          <Property Name="UPDATE_METHOD_REASON" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="LOCATION_TYPE" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="QC_CALL_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LOCATION_STATUS" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ORIG_LOCATION_ID" Type="Int32" />
+          <Property Name="ASCAP_RATE_PLAN" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="RPM_CLIENT_SYSTEM">
+          <Key>
+            <PropertyRef Name="SYSTEM_ID" />
+          </Key>
+          <Property Name="SYSTEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="LOCATION_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROFILE_ID" Type="Int32" Nullable="false" />
+          <Property Name="SYSTEM_STATUS" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="COMPUTER_NAME" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="DATE_REQUIRED" Type="DateTime" Precision="0" />
+          <Property Name="DATE_PROMISED" Type="DateTime" Precision="0" />
+          <Property Name="DATE_BUILT" Type="DateTime" Precision="0" />
+          <Property Name="DATE_SHIPPED" Type="DateTime" Precision="0" />
+          <Property Name="SYSTEM_TYPE" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="DATE_INSTALLED" Type="DateTime" Precision="3" />
+          <Property Name="DATE_LAST_COMM" Type="DateTime" Precision="3" />
+          <Property Name="DATE_NEXT_COMM" Type="DateTime" Precision="3" />
+          <Property Name="DATE_ALERT_COMM" Type="DateTime" Precision="3" />
+          <Property Name="COMM_METHOD" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="DIAL_PREFIX" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="USE_DHCP_FOR_IP" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="IP_ADDRESS" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="IP_SUBNET_MASK" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="IP_GATEWAY" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="USE_DHCP_FOR_DNS" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="IP_DNS_SERVERS" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="COMM_FREQ_VALUE" Type="Int32" />
+          <Property Name="COMM_FREQ_UNITS" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="COMM_WINDOW_START" Type="Int32" />
+          <Property Name="COMM_WINDOW_STOP" Type="Int32" />
+          <Property Name="COMM_RETRY_LIMIT" Type="Int32" />
+          <Property Name="COMM_RETRY_VALUE" Type="Int32" />
+          <Property Name="COMM_RETRY_UNITS" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="LAST_COMM_UPDATE" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="COMM_UPDATE_CREATED" Type="DateTime" Precision="3" />
+          <Property Name="COMM_DELIVERY_METHOD" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="EXPIRATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="FORCE_DEACTIVATION" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="UPDATES_FEEDBACK_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PLAYED_FEEDBACK_DATE" Type="DateTime" Precision="3" />
+          <Property Name="EVENTS_FEEDBACK_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_DIAG_DATE" Type="DateTime" Precision="3" />
+          <Property Name="SYSTEM_EXPIRES" Type="DateTime" Precision="3" />
+          <Property Name="PROXY_SERVER" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="PROXY_PORT" Type="Int32" />
+          <Property Name="PROXY_USER" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PROXY_PASSWORD" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="NEW_WINDOW_START" Type="Int32" />
+          <Property Name="NEW_WINDOW_STOP" Type="Int32" />
+          <Property Name="ACTIVE_CATALOG_VER_NUM" Type="Int32" />
+          <Property Name="ACTIVE_PROFILE_VER_NUM" Type="Int32" />
+          <Property Name="ORIGINAL_PROFILE_ID" Type="Int32" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ENABLED" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_LAST_UPLOAD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IP_ADDRESS_SERVER" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <Property Name="OBEY_COMM_WINDOW" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LAST_COMM_METHOD" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="BPS" Type="Int32" />
+          <Property Name="AUDIO_CARD_TYPE" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="VIDEO_CAPS" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RPMLocSysAddrModelsStoreContainer" CdmEntityContainer="RPMModels">
+          <EntitySetMapping Name="RPM_CLIENT_ADDRESS">
+            <EntityTypeMapping TypeName="RPMLocSysAddrModels.RPM_CLIENT_ADDRESS">
+              <MappingFragment StoreEntitySet="RPM_CLIENT_ADDRESS">
+                <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+                <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+                <ScalarProperty Name="BRANCH" ColumnName="BRANCH" />
+                <ScalarProperty Name="ATTENTION" ColumnName="ATTENTION" />
+                <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+                <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="COMPANY_TYPE" ColumnName="COMPANY_TYPE" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+                <ScalarProperty Name="ORIG_ADDRESS_ID" ColumnName="ORIG_ADDRESS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RPM_CLIENT_LOCATION">
+            <EntityTypeMapping TypeName="RPMLocSysAddrModels.RPM_CLIENT_LOCATION">
+              <MappingFragment StoreEntitySet="RPM_CLIENT_LOCATION">
+                <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+                <ScalarProperty Name="BILL_TO_POLICY" ColumnName="BILL_TO_POLICY" />
+                <ScalarProperty Name="BILL_TO_ADDRESS_ID" ColumnName="BILL_TO_ADDRESS_ID" />
+                <ScalarProperty Name="SHIP_TO_POLICY" ColumnName="SHIP_TO_POLICY" />
+                <ScalarProperty Name="SHIP_TO_ADDRESS_ID" ColumnName="SHIP_TO_ADDRESS_ID" />
+                <ScalarProperty Name="MONTHLY_SERVICE_FEE" ColumnName="MONTHLY_SERVICE_FEE" />
+                <ScalarProperty Name="MONTHS_PER_BILL_PERIOD" ColumnName="MONTHS_PER_BILL_PERIOD" />
+                <ScalarProperty Name="BILL_AHEAD_DAYS" ColumnName="BILL_AHEAD_DAYS" />
+                <ScalarProperty Name="SERVICE_START_DATE" ColumnName="SERVICE_START_DATE" />
+                <ScalarProperty Name="SEASON_START" ColumnName="SEASON_START" />
+                <ScalarProperty Name="SEASON_END" ColumnName="SEASON_END" />
+                <ScalarProperty Name="SEASON_START_MMDD" ColumnName="SEASON_START_MMDD" />
+                <ScalarProperty Name="SEASON_END_MMDD" ColumnName="SEASON_END_MMDD" />
+                <ScalarProperty Name="SYSTEM_GRACE_PERIOD" ColumnName="SYSTEM_GRACE_PERIOD" />
+                <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+                <ScalarProperty Name="PREV_BILL_THROUGH_DATE" ColumnName="PREV_BILL_THROUGH_DATE" />
+                <ScalarProperty Name="HAS_PHYSICAL_ACTIVITY" ColumnName="HAS_PHYSICAL_ACTIVITY" />
+                <ScalarProperty Name="RUNS_PAID_ADVERTISING" ColumnName="RUNS_PAID_ADVERTISING" />
+                <ScalarProperty Name="PAYS_OWN_BMI" ColumnName="PAYS_OWN_BMI" />
+                <ScalarProperty Name="PAYS_OWN_ASCAP" ColumnName="PAYS_OWN_ASCAP" />
+                <ScalarProperty Name="PAYS_OWN_SESAC" ColumnName="PAYS_OWN_SESAC" />
+                <ScalarProperty Name="CHARGES_ADMISSION" ColumnName="CHARGES_ADMISSION" />
+                <ScalarProperty Name="FLOOR_COUNT" ColumnName="FLOOR_COUNT" />
+                <ScalarProperty Name="PAYS_OWN_AFM" ColumnName="PAYS_OWN_AFM" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+                <ScalarProperty Name="UPDATE_METHOD" ColumnName="UPDATE_METHOD" />
+                <ScalarProperty Name="DISC_THRESHOLD" ColumnName="DISC_THRESHOLD" />
+                <ScalarProperty Name="UPDATE_METHOD_REASON" ColumnName="UPDATE_METHOD_REASON" />
+                <ScalarProperty Name="LOCATION_TYPE" ColumnName="LOCATION_TYPE" />
+                <ScalarProperty Name="QC_CALL_DATE" ColumnName="QC_CALL_DATE" />
+                <ScalarProperty Name="LOCATION_STATUS" ColumnName="LOCATION_STATUS" />
+                <ScalarProperty Name="ORIG_LOCATION_ID" ColumnName="ORIG_LOCATION_ID" />
+                <ScalarProperty Name="ASCAP_RATE_PLAN" ColumnName="ASCAP_RATE_PLAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RPM_CLIENT_SYSTEM">
+            <EntityTypeMapping TypeName="RPMLocSysAddrModels.RPM_CLIENT_SYSTEM">
+              <MappingFragment StoreEntitySet="RPM_CLIENT_SYSTEM">
+                <ScalarProperty Name="SYSTEM_ID" ColumnName="SYSTEM_ID" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+                <ScalarProperty Name="PROFILE_ID" ColumnName="PROFILE_ID" />
+                <ScalarProperty Name="SYSTEM_STATUS" ColumnName="SYSTEM_STATUS" />
+                <ScalarProperty Name="COMPUTER_NAME" ColumnName="COMPUTER_NAME" />
+                <ScalarProperty Name="DATE_REQUIRED" ColumnName="DATE_REQUIRED" />
+                <ScalarProperty Name="DATE_PROMISED" ColumnName="DATE_PROMISED" />
+                <ScalarProperty Name="DATE_BUILT" ColumnName="DATE_BUILT" />
+                <ScalarProperty Name="DATE_SHIPPED" ColumnName="DATE_SHIPPED" />
+                <ScalarProperty Name="SYSTEM_TYPE" ColumnName="SYSTEM_TYPE" />
+                <ScalarProperty Name="DATE_INSTALLED" ColumnName="DATE_INSTALLED" />
+                <ScalarProperty Name="DATE_LAST_COMM" ColumnName="DATE_LAST_COMM" />
+                <ScalarProperty Name="DATE_NEXT_COMM" ColumnName="DATE_NEXT_COMM" />
+                <ScalarProperty Name="DATE_ALERT_COMM" ColumnName="DATE_ALERT_COMM" />
+                <ScalarProperty Name="COMM_METHOD" ColumnName="COMM_METHOD" />
+                <ScalarProperty Name="DIAL_PREFIX" ColumnName="DIAL_PREFIX" />
+                <ScalarProperty Name="USE_DHCP_FOR_IP" ColumnName="USE_DHCP_FOR_IP" />
+                <ScalarProperty Name="IP_ADDRESS" ColumnName="IP_ADDRESS" />
+                <ScalarProperty Name="IP_SUBNET_MASK" ColumnName="IP_SUBNET_MASK" />
+                <ScalarProperty Name="IP_GATEWAY" ColumnName="IP_GATEWAY" />
+                <ScalarProperty Name="USE_DHCP_FOR_DNS" ColumnName="USE_DHCP_FOR_DNS" />
+                <ScalarProperty Name="IP_DNS_SERVERS" ColumnName="IP_DNS_SERVERS" />
+                <ScalarProperty Name="COMM_FREQ_VALUE" ColumnName="COMM_FREQ_VALUE" />
+                <ScalarProperty Name="COMM_FREQ_UNITS" ColumnName="COMM_FREQ_UNITS" />
+                <ScalarProperty Name="COMM_WINDOW_START" ColumnName="COMM_WINDOW_START" />
+                <ScalarProperty Name="COMM_WINDOW_STOP" ColumnName="COMM_WINDOW_STOP" />
+                <ScalarProperty Name="COMM_RETRY_LIMIT" ColumnName="COMM_RETRY_LIMIT" />
+                <ScalarProperty Name="COMM_RETRY_VALUE" ColumnName="COMM_RETRY_VALUE" />
+                <ScalarProperty Name="COMM_RETRY_UNITS" ColumnName="COMM_RETRY_UNITS" />
+                <ScalarProperty Name="LAST_COMM_UPDATE" ColumnName="LAST_COMM_UPDATE" />
+                <ScalarProperty Name="COMM_UPDATE_CREATED" ColumnName="COMM_UPDATE_CREATED" />
+                <ScalarProperty Name="COMM_DELIVERY_METHOD" ColumnName="COMM_DELIVERY_METHOD" />
+                <ScalarProperty Name="EXPIRATION_DATE" ColumnName="EXPIRATION_DATE" />
+                <ScalarProperty Name="FORCE_DEACTIVATION" ColumnName="FORCE_DEACTIVATION" />
+                <ScalarProperty Name="UPDATES_FEEDBACK_DATE" ColumnName="UPDATES_FEEDBACK_DATE" />
+                <ScalarProperty Name="PLAYED_FEEDBACK_DATE" ColumnName="PLAYED_FEEDBACK_DATE" />
+                <ScalarProperty Name="EVENTS_FEEDBACK_DATE" ColumnName="EVENTS_FEEDBACK_DATE" />
+                <ScalarProperty Name="LAST_DIAG_DATE" ColumnName="LAST_DIAG_DATE" />
+                <ScalarProperty Name="SYSTEM_EXPIRES" ColumnName="SYSTEM_EXPIRES" />
+                <ScalarProperty Name="PROXY_SERVER" ColumnName="PROXY_SERVER" />
+                <ScalarProperty Name="PROXY_PORT" ColumnName="PROXY_PORT" />
+                <ScalarProperty Name="PROXY_USER" ColumnName="PROXY_USER" />
+                <ScalarProperty Name="PROXY_PASSWORD" ColumnName="PROXY_PASSWORD" />
+                <ScalarProperty Name="NEW_WINDOW_START" ColumnName="NEW_WINDOW_START" />
+                <ScalarProperty Name="NEW_WINDOW_STOP" ColumnName="NEW_WINDOW_STOP" />
+                <ScalarProperty Name="ACTIVE_CATALOG_VER_NUM" ColumnName="ACTIVE_CATALOG_VER_NUM" />
+                <ScalarProperty Name="ACTIVE_PROFILE_VER_NUM" ColumnName="ACTIVE_PROFILE_VER_NUM" />
+                <ScalarProperty Name="ORIGINAL_PROFILE_ID" ColumnName="ORIGINAL_PROFILE_ID" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+                <ScalarProperty Name="DATE_LAST_UPLOAD" ColumnName="DATE_LAST_UPLOAD" />
+                <ScalarProperty Name="IP_ADDRESS_SERVER" ColumnName="IP_ADDRESS_SERVER" />
+                <ScalarProperty Name="OBEY_COMM_WINDOW" ColumnName="OBEY_COMM_WINDOW" />
+                <ScalarProperty Name="LAST_COMM_METHOD" ColumnName="LAST_COMM_METHOD" />
+                <ScalarProperty Name="BPS" ColumnName="BPS" />
+                <ScalarProperty Name="AUDIO_CARD_TYPE" ColumnName="AUDIO_CARD_TYPE" />
+                <ScalarProperty Name="VIDEO_CAPS" ColumnName="VIDEO_CAPS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

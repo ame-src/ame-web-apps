@@ -1,0 +1,25 @@
+﻿@model List<AmeWebApps.Models.BuildSheetListModel>
+@{
+    ViewBag.Title = "Print Build Sheets";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 50);
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@grid.GetHtml(
+tableStyle: "webGrid",
+headerStyle: "header",
+alternatingRowStyle: "alt",
+columns: grid.Columns(
+    grid.Column(columnName: "SYSTEM_ID", header: "System ID"),
+    grid.Column(columnName:"COMPANY_NAME", header: "Company"),
+    grid.Column(columnName:"BRANCH", header: "Branch"),
+    grid.Column(columnName:"PRINT", header: "Print Buildsheet", format: item => Html.ActionLink((string)"Verify & Print", (string)"VerifyBuildSheet", new { systemID = (int)item.SYSTEM_ID})) 
+))
